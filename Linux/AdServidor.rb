@@ -14,7 +14,7 @@ class AdServidor
 	def run
 		puts "Servidor Activo"
 		
-		hilo_administrador = Thread.new {hilo_admin}
+		Thread.new {hilo_admin}
 
 		Socket.tcp_server_loop(@puerto) {|socket|
 		  Thread.new {

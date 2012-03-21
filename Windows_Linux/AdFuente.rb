@@ -25,7 +25,7 @@ class AdFuente
 	    	@socket.puts "AdFuente"
 		    hilo_leer = Thread.new { leer }
 		    hilo_escribir = Thread.new { escribir}
-		    puts "Conected..."
+		    puts "Conectado"
 		    hilo_leer.join
 		    hilo_escribir.join
 	    ensure

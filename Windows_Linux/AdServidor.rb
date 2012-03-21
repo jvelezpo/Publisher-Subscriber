@@ -5,7 +5,7 @@ def Kernel.is_windows?
 end
 
 require "socket"
-require 'readline'
+
 
 if Kernel.is_windows? == true
   require 'win32console'
@@ -169,7 +169,7 @@ class AdServidor
 
 
   def hilo_adCliente(socket)
-    #Ver los mensajes de un canal () socket.puts @canales[line][0]
+
     begin
       while not socket.eof?
         line = socket.readline.chomp
@@ -210,8 +210,8 @@ class AdServidor
             else
               asCanales = line.split(',')
               asCanales.each do |canal|
-                canal = canal.strip.upcase
-                if @canales.has_key?(canal.upcase)
+                canal = canal.strip.capitalize
+                if @canales.has_key?(canal.capitalize)
                   if @canales[canal][0].empty?
                     socket.puts "No existen mensajes en el canal #{canal}"
                   else
@@ -235,7 +235,7 @@ class AdServidor
               nombreUsuario = @clientes.invert[socket]
               asCanales = line.split(',')
               asCanales.each do |canal|
-                canal = canal.strip.upcase
+                canal = canal.strip.capitalize
                 if @canales.has_key?(canal) && @canales[canal][1].include?(nombreUsuario)
                   socket.puts "Cancelaste la subscripcion de: #{canal}"
                   @canales[canal][1].delete(nombreUsuario)
@@ -254,7 +254,7 @@ class AdServidor
              nombreUsuario = @clientes.invert[socket]
               asCanales = line.split(',')
               asCanales.each do |canal|
-                canal = canal.strip.upcase
+                canal = canal.strip.capitalize
                 if @canales.has_key?(canal) && !@canales[canal][1].include?(nombreUsuario)
                   socket.puts "Subscrito al canal: #{canal}"
                   @canales[canal][1].push(nombreUsuario)
@@ -322,12 +322,12 @@ class AdServidor
               mensajeMSG =  line.to_s
               asCanales = canalesMSG.split(',')
               asCanales.each do |canal|
-                canal = canal.strip.upcase
+                canal = canal.strip.capitalize
                 if @canales.has_key?(canal)
                   @canales[canal][0].push(mensajeMSG)
                   @canales[canal][1].each do |cliente|
                     if	@clientes.include?(cliente)
-                      @clientes[cliente].puts "Mensajenuevo de #{canalesMSG}\n\t- #{mensajeMSG}"
+                      @clientes[cliente].puts "Mensaje nuevo de #{canalesMSG}\n\t- #{mensajeMSG}"
                     end
                   end
                   socket.puts "Su mensaje ha sido enviado a: #{canal}"

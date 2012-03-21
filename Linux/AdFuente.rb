@@ -1,15 +1,4 @@
-
-def Kernel.is_windows?
-  processor, platform, *rest = RUBY_PLATFORM.split("-")
-  platform == 'mingw32'
-end
-
 require "socket"
-require 'readline'
-
-if Kernel.is_windows? == true
-  require 'win32console'
-end
 
 
 class AdFuente

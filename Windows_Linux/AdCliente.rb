@@ -6,7 +6,7 @@ def Kernel.is_windows?
 end
 
 require "socket"
-require 'readline'
+
 
 if Kernel.is_windows? == true
   require 'win32console'
@@ -77,7 +77,7 @@ class AdCliente
 	end
 
   def ayuda
-    puts "\nAvailable commands: "
+    puts "\nComandos: "
     puts "- lista chs: Lista de todos los canales disponibles en el servidor"
     puts "- lista mis chs: Lista de los canales a los cuales estoy subscrito"
     puts "- mensajes Canal1,.. : Obtiene los mensajes de los canales especificados"

@@ -6,8 +6,8 @@ def Kernel.is_windows?
 end
 
 require "socket"
-require 'nokogiri'
 require 'readline'
+
 if Kernel.is_windows? == true
   require 'win32console'
 end
@@ -25,18 +25,18 @@ class AdCliente
 	def run
 	    @socket = TCPSocket.new(host, puerto)
 	    begin
-	    	@socket.puts "AdCliente"					#Me identifico ante el servidor como un AdCliente
+	    	@socket.puts "AdCliente"
 	    	STDOUT.sync = true
-	    	print "Enter an username: "
+	    	print "Nombre de usuario: "
 	    	nombreUsuario = STDIN.gets.chomp
-	      	@socket.puts nombreUsuario
+	      @socket.puts nombreUsuario
 
-	      	puts "Conected..."
+	      puts "Conectado"
 
-	    	hiloLeer = Thread.new { leer }
-		    hiloEscribir = Thread.new { escribir}
-		    hiloLeer.join
-		    hiloEscribir.join
+	    	hilo_leer = Thread.new { leer }
+		    hilo_escribir = Thread.new { escribir}
+		    hilo_leer.join
+		    hilo_escribir.join
 	    ensure
 	      @socket.close
 	    end
@@ -47,54 +47,43 @@ class AdCliente
 
 	def leer
 		begin
-	      while not @socket.eof?
-		        line = @socket.gets.chomp
-		        if line=~ /(ERR) (1|2)/
-		        	case $2
-			    		when "1"
-			    			puts "Command not found"
-				    	when "2"
-					    	puts "Error: You have to set at least one channel"
-				    end
-				else
-					puts line	
-		        end	
-		   end
-	    rescue Exception => e     				#Catch de RUBY
-	      puts "Ha ocurrido un error: #{e}"
-	    end
+      while not @socket.eof?
+        line = @socket.gets.chomp
+        puts line
+		  end
+	    rescue Exception => e
+	      puts "Error: #{e}"
+	  end
 
 	end
 
 	def escribir
 		begin
 	      while not STDIN.eof?
-	        line = STDIN.gets.chomp
-	      	if line == "-HELP" || line == "-help"
-	      		helpCliente
-	      	elsif line == "QUIT" || line == "quit"
+	        line = STDIN.gets.chomp.downcase
+	      	if line == "help"
+	      		ayuda
+	      	elsif line == "exit"
 	        	exit
 	        else
 	        	@socket.puts line
 	        end	
 	      end
 	    rescue SystemExit, Interrupt
-		    puts("Good Bye! :).")
-			Thread.list.each { |t| t.kill }
+			  Thread.list.each { |t| t.kill }
 	    rescue Exception => e
 	      puts "Ha ocurrido un error: #{e}"      
 	    end
 	end
 
-  def helpCliente
+  def ayuda
     puts "\nAvailable commands: "
-    puts "-LIST CH => Lists all channels that are currently active in the server"
-    puts "-LIST MY CH => Lists all channels that you are subscribed"
-    puts "-GETMSGS (Channel1,...) => Get all the messages from channel(s) Channel1,..."
-    puts "-SUBSCRIBE (Channel1,...) => Subscribes you into channel(s) Channel1,..."
-    puts "-UNSUBSCRIBE (Channel1,...) => Unsubscribes you into channel(s) Channel1,..."
-    puts "- -HELP => Shows all the Available commands"
-    puts "-QUIT => Quits the program"
+    puts "- lista chs: Lista de todos los canales disponibles en el servidor"
+    puts "- lista mis chs: Lista de los canales a los cuales estoy subscrito"
+    puts "- mensajes Canal1,.. : Obtiene los mensajes de los canales especificados"
+    puts "- subscribe Canal1,..: Subscribirte a los canales especificados"
+    puts "- unsubscribe Canal1,..: Cancelar la subscripcion de uno o mas canales"
+    puts "- exit: Sale de la aplicacion"
   end
 
 end

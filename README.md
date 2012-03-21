@@ -8,10 +8,7 @@ anuncios (AdCliente), el cual recibe los mensajes enviados a un Canal por un AdF
 ###Reto 1
 
  **Por:**
-  
-   * [Esteban Arango Medina](https://github.com/esbanarango)
-   * [Daniel Duque Tirado](https://github.com/DanielJDuque)
-   * [Sebastian Duque Jaramillo](https://github.com/sduquej)
+
 
 ##Requisitos & Instalación
 

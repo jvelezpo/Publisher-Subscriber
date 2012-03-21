@@ -62,10 +62,10 @@
         <option value="$PROJECT_DIR$/Modules/mainModules.rb" />
         <option value="$PROJECT_DIR$/Modules/designModules.rb" />
         <option value="$PROJECT_DIR$/Persistence/XmlHandler.rb" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/AdServidor.rb" />
         <option value="$PROJECT_DIR$/AdCliente.rb" />
         <option value="$PROJECT_DIR$/AdFuente.rb" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -288,13 +288,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="2" selection-start="445" selection-end="445" vertical-scroll-proportion="0.19607843">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AdCliente.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0">
@@ -305,6 +298,13 @@
     <entry file="file://$PROJECT_DIR$/AdFuente.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="44" selection-start="1443" selection-end="1443" vertical-scroll-proportion="0.60784316">
           <folding />
         </state>
       </provider>

@@ -5,7 +5,7 @@
 
 ##Requisitos & Instalación
 
-Se debe tener instalado Ruby 1.9. (Ruby 1.8 no soporta funciones como 'tcp_server_loop' entre otras.)
+Se debe tener instalado Ruby 1.9. 
 
 
 
